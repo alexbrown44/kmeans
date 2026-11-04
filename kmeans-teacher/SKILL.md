@@ -128,6 +128,10 @@ Build the explorer and publish it as an artifact:
 python scripts/build_explorer.py --results out/results.json --out kmeans_explorer.html
 ```
 
+Pass the names you gave the clusters in Step 5, in cluster order, so the page
+uses them: `--names "High-value loyalists" "Bargain hunters" ...`. Add
+`--title "..."` for a heading that fits the user's data.
+
 It shows the cluster map, a step-by-step replay of the algorithm (centroids
 start randomly, points join the nearest centroid, centroids move to the middle,
 repeat until nothing changes), the "unlucky start" replay, the elbow/silhouette
