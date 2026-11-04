@@ -1,0 +1,70 @@
+# K-means teaching skill - project notes
+
+Alex is building a Claude Skill that teaches K-means clustering, for a live
+online class on **Monday 9 November 2026** (10-15 minute demo slot) to
+business-school students. Students then get this repo to install the skill
+themselves. This file is the handoff from the build session in Claude chat.
+
+## What this repo contains
+- `kmeans-teacher/` - the skill (this folder gets zipped and uploaded to Claude)
+  - `SKILL.md` - the teaching flow Claude follows
+  - `scripts/generate_data.py` - synthetic customer data, `--mode clustered|noise`, seed 42
+  - `scripts/cluster.py` - cleaning, scaling, choosing k, K-means, charts, `results.json`
+  - `references/explanations.md` - plain-English explanations, simple and deeper
+  - `data/wholesale_customers.csv` - real data (UCI Wholesale customers, CC BY 4.0)
+
+## Decisions already made (don't reopen without asking Alex)
+- Skill + artifact, no standalone app.
+- All numbers come from the bundled seeded scripts, never improvised code.
+- Narrative first; code shown only on request.
+- Synthetic data: 800 customers, five hidden segments (High-value loyalists,
+  Bargain hunters, Casual browsers, Young impulse buyers, Affluent but disengaged).
+- Real data: UCI Wholesale customers, clustered with `--log all`.
+
+## Tested results (Day 1, all passing)
+Synthetic, features Age AnnualIncome SpendingScore TimeOnSite NumberOfVisits:
+- Scaled k=5: recovers all five segments (95-100% purity), silhouette 0.473.
+- Silhouette picks k=4, elbow picks k=5. At k=4 "Casual browsers" and
+  "Affluent but disengaged" merge (can't spend vs won't spend). Scripted demo beat.
+- Unscaled: AnnualIncome drives 96% of the split; fair silhouette 0.041 (vs 0.473).
+- Noise mode: silhouette ~0.15 flat for every k; script warns.
+- Replays: clean replay ends exactly on the final answer (6 steps at k=5);
+  "unlucky start" replay ends 85% worse.
+- Reproducible: identical output on repeated runs.
+Real data (wholesale): raw silhouette 0.548 but 89% in one cluster + 2 outliers
+(script warns); with `--log all --k 2`, silhouette 0.29 and clusters separate
+97% hotels/restaurants/cafes from mostly retail without using the Channel column.
+Robustness: semicolon CSV, Excel, $ and commas, missing values, wrong-case
+column names, categorical and ID columns all handled with clear messages.
+
+If you change `cluster.py` or `generate_data.py`, re-run these checks and
+confirm the numbers above still hold.
+
+## Still to do (Day 2 and 3)
+1. **`kmeans-teacher/scripts/build_explorer.py`** plus
+   **`kmeans-teacher/assets/explorer_template.html`**. SKILL.md Step 6 already
+   calls: `python scripts/build_explorer.py --results out/results.json --out kmeans_explorer.html`.
+   It injects results.json into the template to make ONE self-contained HTML page:
+   - cluster map (PCA scatter, coloured by cluster, centroids marked)
+   - step-by-step replay with Step / Play / Reset, using `iterations`
+   - "unlucky start" toggle using `iterations_unlucky` and `unlucky_worse_pct`
+   - elbow and silhouette charts from `k_scan`
+   - centroid profile table (`centroids[].values` and `.z`), sizes, drivers
+   - must work offline as a file AND as a published artifact; no external data
+   - mobile width OK, readable on a shared screen (big type)
+2. **Public no-install demo link**: build the explorer on the synthetic k=5
+   results and publish it as a public artifact. This is the link most students
+   will actually use, so polish matters.
+3. **README.md** for students: zip download link at the top, plain install
+   steps for adding a skill in Claude (check current steps in Claude's help
+   centre, don't guess), plan and code-execution requirements, and the public
+   demo link.
+4. **Run sheet** for Alex: the exact prompts to type in class, in order, with
+   what should appear after each. Fit 10-15 minutes. Recommended cut:
+   data -> scaling beat -> choosing k (4 vs 5) -> segments and campaigns ->
+   noise trap. Real data gets one sentence; it's homework in the repo.
+5. **Rehearsals in Claude chat (not Claude Code)**: install the zipped skill in
+   Alex's Claude account and run the run sheet three times. Sunday = freeze.
+
+## Working style
+Alex wants blunt, direct advice: push back, flag risks, no flattery.
