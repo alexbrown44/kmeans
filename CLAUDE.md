@@ -41,7 +41,10 @@ If you change `cluster.py` or `generate_data.py`, re-run these checks and
 confirm the numbers above still hold.
 
 ## Still to do (Day 2 and 3)
-1. **`kmeans-teacher/scripts/build_explorer.py`** plus
+1. DONE (Day 2), tested on a schema-faithful mock only: pandas is blocked by
+   Windows Application Control on Alex's PC, so cluster.py can't run there.
+   First real test is item 2. Spec was:
+   **`kmeans-teacher/scripts/build_explorer.py`** plus
    **`kmeans-teacher/assets/explorer_template.html`**. SKILL.md Step 6 already
    calls: `python scripts/build_explorer.py --results out/results.json --out kmeans_explorer.html`.
    It injects results.json into the template to make ONE self-contained HTML page:
@@ -55,10 +58,12 @@ confirm the numbers above still hold.
 2. **Public no-install demo link**: build the explorer on the synthetic k=5
    results and publish it as a public artifact. This is the link most students
    will actually use, so polish matters.
-3. **README.md** for students: zip download link at the top, plain install
-   steps for adding a skill in Claude (check current steps in Claude's help
-   centre, don't guess), plan and code-execution requirements, and the public
-   demo link.
+3. **README.md** for students: DONE (Day 2), except the public demo link:
+   replace `DEMO-LINK-HERE` once item 2 is published. Install steps checked
+   against support.claude.com article 12512180 on 2026-11-04.
+   The README links to `kmeans-teacher.zip` in the repo root. **Rebuild and
+   commit that zip whenever anything in `kmeans-teacher/` changes**, or
+   students download a stale skill.
 4. **Run sheet** for Alex: the exact prompts to type in class, in order, with
    what should appear after each. Fit 10-15 minutes. Recommended cut:
    data -> scaling beat -> choosing k (4 vs 5) -> segments and campaigns ->
