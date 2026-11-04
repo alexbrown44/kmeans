@@ -6,7 +6,7 @@ each step in plain English, and builds an interactive explorer you can play with
 ## ⬇️ [Download the skill (kmeans-teacher.zip)](https://raw.githubusercontent.com/alexbrown44/kmeans/main/kmeans-teacher.zip)
 
 **Just want to look?** Try the demo in your browser, no install needed:
-**[Open the K-means explorer](DEMO-LINK-HERE)**
+**[Open the K-means explorer](https://claude.ai/artifact/KH7dmKcYzkBTdKz1MRDdzk)**
 
 ---
 

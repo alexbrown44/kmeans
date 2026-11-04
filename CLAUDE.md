@@ -58,8 +58,11 @@ confirm the numbers above still hold.
 2. **Public no-install demo link**: build the explorer on the synthetic k=5
    results and publish it as a public artifact. This is the link most students
    will actually use, so polish matters.
-3. **README.md** for students: DONE (Day 2), except the public demo link:
-   replace `DEMO-LINK-HERE` once item 2 is published. Install steps checked
+   DONE (Day 2): https://claude.ai/artifact/KH7dmKcYzkBTdKz1MRDdzk (public,
+   real synthetic k=5 run, checked 2026-11-04). It predates the CSV-button
+   removal, so it still shows a dead Download CSV button. Don't unpublish it:
+   the README links to it.
+3. **README.md** for students: DONE (Day 2), demo link added. Install steps checked
    against support.claude.com article 12512180 on 2026-11-04.
    The README links to `kmeans-teacher.zip` in the repo root. **Rebuild and
    commit that zip whenever anything in `kmeans-teacher/` changes**, or
