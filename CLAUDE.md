@@ -67,7 +67,11 @@ confirm the numbers above still hold.
    The README links to `kmeans-teacher.zip` in the repo root. **Rebuild and
    commit that zip whenever anything in `kmeans-teacher/` changes**, or
    students download a stale skill.
-4. **Run sheet** for Alex: the exact prompts to type in class, in order, with
+4. DONE (Day 2): `RUN_SHEET.md`. Expected numbers taken from the first real
+   Claude-chat run. Uses the published demo link for the replay instead of
+   building the explorer live. Unverified until rehearsal: that the new
+   one-beat-per-reply rule holds. Spec was:
+   **Run sheet** for Alex: the exact prompts to type in class, in order, with
    what should appear after each. Fit 10-15 minutes. Recommended cut:
    data -> scaling beat -> choosing k (4 vs 5) -> segments and campaigns ->
    noise trap. Real data gets one sentence; it's homework in the repo.
