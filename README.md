@@ -2,6 +2,7 @@
 
 Learn K-means clustering by doing it. Claude segments a set of customers step by step, explains
 each step in plain English, and builds an interactive explorer you can play with.
+New to K-means, or wondering what you can use this for? Read **[What is this?](WHAT_IS_THIS.md)**
 
 ## ⬇️ [Download the skill (kmeans-teacher.zip)](https://raw.githubusercontent.com/alexbrown44/kmeans/main/kmeans-teacher.zip)
 
