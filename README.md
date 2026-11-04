@@ -3,7 +3,7 @@
 Learn K-means clustering by doing it. Claude segments a set of customers step by step, explains
 each step in plain English, and builds an interactive explorer you can play with.
 
-## ⬇️ [Download the skill (kmeans-teacher.zip)](https://github.com/alexbrown44/kmeans/raw/main/kmeans-teacher.zip)
+## ⬇️ [Download the skill (kmeans-teacher.zip)](https://raw.githubusercontent.com/alexbrown44/kmeans/main/kmeans-teacher.zip)
 
 **Just want to look?** Try the demo in your browser, no install needed:
 **[Open the K-means explorer](DEMO-LINK-HERE)**
