@@ -500,24 +500,16 @@ tr.avg td { font-style: italic; color: var(--ink-2); border-bottom: 0; }
     app.appendChild(oCard);
   }
 
-  // ------------------------------------------------------------ download
+  // ------------------------------------------------------------ the data
+  // No download button: published artifacts block downloads from inside the page.
+  // cluster.py already writes the labelled CSV, and Claude offers it in the chat.
   var xCard = el("section", { "class": "card" });
   xCard.innerHTML = "<h2>Take the data with you</h2>" +
-    '<p class="sub">Every row with its cluster, ready for Excel.</p>' +
-    '<div class="controls"><button class="btn primary" id="bCsv">Download CSV</button></div>' +
+    '<p class="sub">Every row with its cluster label is in the chat as <b>labelled_data.csv</b>, ready for Excel. ' +
+    "The cluster averages are in <b>centroids.csv</b>.</p>" +
     (R.notes && R.notes.length ? '<p class="note">Data notes: ' + R.notes.map(esc).join(" ") + "</p>" : "") +
     '<p class="note">Seed ' + R.seed + ". Same data and settings always give the same answer.</p>";
   app.appendChild(xCard);
-  xCard.querySelector("#bCsv").onclick = function () {
-    var q = function (s) { s = String(s); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
-    var lines = [["id", "cluster", "cluster_name"].concat(R.features).map(q).join(",")];
-    R.points.forEach(function (p) {
-      lines.push([p.id, p.c, names[p.c]].concat(R.features.map(function (f) { return p.v[f]; })).map(q).join(","));
-    });
-    var blob = new Blob([lines.join("\n")], { type: "text/csv" });
-    var a = el("a", { href: URL.createObjectURL(blob), download: "kmeans_clusters.csv" });
-    document.body.appendChild(a); a.click(); a.remove();
-  };
 
   window.addEventListener("resize", function () { resize(); });
   if (window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);

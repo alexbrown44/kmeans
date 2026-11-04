@@ -142,7 +142,8 @@ uses them: `--names "High-value loyalists" "Bargain hunters" ...`. Add
 It shows the cluster map, a step-by-step replay of the algorithm (centroids
 start randomly, points join the nearest centroid, centroids move to the middle,
 repeat until nothing changes), the "unlucky start" replay, the elbow/silhouette
-charts, centroid profiles and a CSV download. Tell the user to press Step and
+charts and centroid profiles. It has no download button (published artifacts
+block downloads); offer `labelled_data.csv` in the chat instead. Tell the user to press Step and
 watch. Point out the unlucky start: this is why the real run uses 10 starts and
 keeps the best.
 
