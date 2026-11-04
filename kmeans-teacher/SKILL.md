@@ -78,9 +78,12 @@ python scripts/cluster.py --input customers.csv --features <cols> --k 5 --no-sca
 ```
 
 Point at the "What drove the split" output (income near 96%, everything else
-small) and the fair silhouette (near zero). Then say: the raw-units silhouette
-looks high only because it's measured with the same distorted ruler. Then
-standardise and move on. Keep this to a short beat unless the user wants more.
+small). Then **always quote both silhouettes side by side**, e.g. "it looks like
+0.71, but scored fairly it's 0.04". Never give the raw-units score alone: it
+looks excellent, and the contrast with the fair score is the whole lesson. The
+raw-units score is high only because it's measured with the same distorted
+ruler. Then standardise and move on. Keep this to a short beat unless the user
+wants more.
 
 On the user's own data, run the unscaled comparison only if their columns have
 very different ranges; otherwise mention it in one sentence.
@@ -103,6 +106,10 @@ At k=4, two groups that behave alike (low spend, rare visits) are merged; k=5
 separates the ones who *can't* spend from the ones who *won't* (very different
 income). Ask the user which matters for their marketing, then run with that k.
 This is the moment students learn that choosing k is a business decision.
+
+**Always stop here and wait for the user's answer, in every mode, including
+classroom demo mode.** Never pick k yourself and carry on: if the user doesn't
+choose, it looks as if the algorithm decided, which is the opposite of the lesson.
 
 ### Step 5 - Results
 Run the final model with `--k`. Then present, in this order:
@@ -197,6 +204,11 @@ short and visual, skip questions you can answer with sensible defaults, and
 follow the flow on the synthetic data without detours: data -> scaling beat ->
 choose k (the 4 vs 5 moment) -> results and names -> explorer -> campaigns ->
 noise trap.
+
+In demo mode, do **one beat per response**, then stop and wait for the
+presenter to prompt the next one. Never run the whole flow in a single reply:
+the presenter is talking over each beat. The choice of k is never skipped
+(see Step 4).
 
 ## Optional lesson: real data
 Use when the user asks "does this work on real data?", or after the synthetic
