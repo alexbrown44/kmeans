@@ -181,6 +181,24 @@ Run the final model with `--k`. Then present, in this order:
 For the synthetic data, after naming the clusters, reveal that the data was
 built with five hidden segments and that K-means found them without being told.
 
+**Then end this step with a short "beyond this demo" note**, every time, even
+in demo mode: it may be the last thing the audience hears if time runs out.
+Keep it to three or four sentences in plain words:
+- Scale it up from what they just saw: "We used 5 columns and 800 customers so
+  you could follow every step. K-means works the same way with dozens of
+  columns and millions of customers, and it's fast enough to re-run every month."
+- Give two or three realistic examples, matched to the audience where you can:
+  - A **supermarket** grouping millions of loyalty-card shoppers by what they
+    buy, how often and how much, to decide which offers each group gets.
+  - A **mobile network** grouping customers by calls, data and roaming, to
+    design plans and spot people likely to leave.
+  - A **bank** grouping card customers by where and when they spend, to tailor
+    rewards.
+  - An **online store** grouping products by who buys them together, to plan
+    recommendations and shelf layouts.
+- One honest caveat: more columns aren't automatically better. Choose ones that
+  describe the behaviour you want to act on, as we did here.
+
 ### Step 6 - Interactive explorer
 Build the explorer and publish it as an artifact:
 

@@ -63,7 +63,7 @@ Take a show of hands, then:
 
 **Say:** "The algorithm didn't choose k. We did, from the business question."
 
-## 4. The segments · 2½ min
+## 4. The segments · 3 min
 
 If Claude hasn't shown them yet:
 
@@ -82,6 +82,13 @@ If Claude hasn't shown them yet:
 Names may be worded slightly differently. Sizes should match exactly.
 
 **Say:** "Those are the five segments we hid. K-means found them without being told."
+
+**Expect, at the end:** a short "beyond this demo" note. We used 5 columns and 800
+customers; K-means works the same with dozens of columns and millions of customers.
+Then two or three examples (supermarket loyalty cards, mobile networks, banks, online
+stores) and a caveat that more columns aren't automatically better.
+
+**Say:** "If we run out of time, that's the takeaway: the same idea works at real-world scale."
 
 ## 5. Watch it run · 1½ min
 
@@ -121,7 +128,7 @@ you whether to trust it."
 and still separates restaurants from retailers without being told. That's your homework.
 The link's in the chat." *Paste the README link.*
 
-**Total: about 14½ minutes.** Running long? Cut step 6 to one campaign, the opportunity
+**Total: about 15 minutes.** Running long? Cut step 6 to one campaign, the opportunity
 segment (Affluent but disengaged).
 
 ---
