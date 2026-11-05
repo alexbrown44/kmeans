@@ -40,6 +40,12 @@ column names, categorical and ID columns all handled with clear messages.
 If you change `cluster.py` or `generate_data.py`, re-run these checks and
 confirm the numbers above still hold.
 
+Day 3 (2026-11-05): `chart_k()` in cluster.py changed so each panel of
+choose_k.png marks its own method's pick (the old one marked the chosen k on
+both, so both showed 4 before k was chosen). Drawing only; no numbers changed.
+It only compiles here (pandas is blocked on Alex's PC), so check that
+choose_k.png renders on the next Claude-chat rehearsal.
+
 ## Still to do (Day 2 and 3)
 1. DONE (Day 2), tested on a schema-faithful mock only: pandas is blocked by
    Windows Application Control on Alex's PC, so cluster.py can't run there.

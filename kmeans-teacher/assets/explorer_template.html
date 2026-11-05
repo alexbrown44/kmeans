@@ -190,7 +190,8 @@ tr.avg td { font-style: italic; color: var(--ink-2); border-bottom: 0; }
     '<div class="axis"><span>← PC1 (' + pct(R.pca_variance[0] || 0) + ' of variation) →</span>' +
       (R.pca_variance.length > 1 ? "<span>↑ PC2 (" + pct(R.pca_variance[1]) + ")</span>" : "") + "</div>" +
     '<div class="legend" id="legend"></div>' +
-    '<p class="note">The map squashes ' + R.features.length + " columns onto a flat picture (PCA). Overlap here doesn't always mean overlap in the real data.</p>";
+    '<p class="note">The map is like a shadow of ' + R.features.length + " columns on a flat wall: it keeps the main shape but loses some detail. " +
+    "Groups that overlap here may still be separate in the real data.</p>";
   app.appendChild(mapCard);
 
   var canvas = mapCard.querySelector("#map");
@@ -419,15 +420,15 @@ tr.avg td { font-style: italic; color: var(--ink-2); border-bottom: 0; }
   function elbowSvg() {
     var v = S.inertia;
     return chartFrame(v, 0, Math.max.apply(null, v), function (x, y) {
-      var s = "", ci = S.ks.indexOf(K), ei = S.ks.indexOf(S.elbow_k);
-      if (ci >= 0) s += '<line x1="' + x(ci) + '" x2="' + x(ci) + '" y1="16" y2="234" stroke="var(--ink-2)" stroke-dasharray="4 4"/>';
+      // Mark only the elbow's own pick; the chosen k is stated in the text above
+      var s = "", ei = S.ks.indexOf(S.elbow_k);
       s += '<polyline fill="none" stroke="' + PALETTE[0] + '" stroke-width="3" points="' +
         v.map(function (val, i) { return x(i) + "," + y(val); }).join(" ") + '"/>';
       v.forEach(function (val, i) {
         s += '<circle cx="' + x(i) + '" cy="' + y(val) + '" r="' + (i === ei ? 7 : 4.5) + '" fill="' + PALETTE[0] +
           '" stroke="var(--surface)" stroke-width="2"><title>k=' + S.ks[i] + ": inertia " + fmt(val) + "</title></circle>";
       });
-      if (ei >= 0) s += '<text x="' + (x(ei) + 10) + '" y="' + (y(v[ei]) - 10) + '" style="fill:var(--ink);font-weight:600">elbow</text>';
+      if (ei >= 0) s += '<text x="' + (x(ei) + 10) + '" y="' + (y(v[ei]) - 10) + '" style="fill:var(--ink);font-weight:600">elbow: k=' + S.elbow_k + "</text>";
       return s;
     });
   }
@@ -435,12 +436,12 @@ tr.avg td { font-style: italic; color: var(--ink-2); border-bottom: 0; }
     var v = S.silhouette, hi = Math.max(0.6, Math.max.apply(null, v) * 1.1), lo = Math.min(0, Math.min.apply(null, v));    return chartFrame(v, lo, hi, function (x, y) {
       var s = "", n = S.ks.length, bw = Math.min(36, 300 / n);
       v.forEach(function (val, i) {
-        var best = S.ks[i] === S.best_silhouette_k, chosen = S.ks[i] === K;
+        var best = S.ks[i] === S.best_silhouette_k;
         var top = y(Math.max(val, 0)), bot = y(Math.min(val, 0));
         s += '<rect x="' + (x(i) - bw / 2) + '" y="' + top + '" width="' + bw + '" height="' + Math.max(bot - top, 1) +
-          '" rx="3" fill="' + (best ? PALETTE[1] : "var(--muted-point)") + '"' + (chosen ? ' stroke="var(--ink)" stroke-width="2"' : "") +
+          '" rx="3" fill="' + (best ? PALETTE[1] : "var(--muted-point)") + '"' +
           "><title>k=" + S.ks[i] + ": silhouette " + val.toFixed(3) + "</title></rect>";
-        if (best) s += '<text x="' + x(i) + '" y="' + (top - 8) + '" text-anchor="middle" style="fill:var(--ink);font-weight:600">' + val.toFixed(2) + "</text>";
+        if (best) s += '<text x="' + x(i) + '" y="' + (top - 8) + '" text-anchor="middle" style="fill:var(--ink);font-weight:600">best: k=' + S.ks[i] + "</text>";
       });
       return s;
     });
@@ -454,12 +455,12 @@ tr.avg td { font-style: italic; color: var(--ink-2); border-bottom: 0; }
       R.features.map(function (f) {
         var z = c.z[f], a = Math.min(Math.abs(z) / 2, 1) * 0.5;
         var bg = "rgba(" + (z >= 0 ? "var(--pos)" : "var(--neg)") + "," + a.toFixed(2) + ")";
-        return '<td style="background:' + bg + '">' + fmt(c.values[f]) + "<small>" + (z >= 0 ? "+" : "−") + Math.abs(z).toFixed(1) + " sd</small></td>";
+        return '<td style="background:' + bg + '">' + fmt(c.values[f]) + "<small>" + (z >= 0 ? "+" : "−") + Math.abs(z).toFixed(1) + "</small></td>";
       }).join("") + "</tr>";
   }).join("");
   pCard.innerHTML = "<h2>What each cluster looks like</h2>" +
-    '<p class="sub">Average member of each cluster in original units. Shading shows distance from average in standard deviations (sd): ' +
-    '<span style="color:rgb(var(--pos))">blue above</span>, <span style="color:rgb(var(--neg))">orange below</span>.</p>' +
+    '<p class="sub">The typical member of each group. The small number shows how unusual that is: 0 is average, beyond ±1 is a defining trait. ' +
+    '<span style="color:rgb(var(--pos))">Blue is above average</span>, <span style="color:rgb(var(--neg))">orange below</span>.</p>' +
     '<div class="tablewrap"><table><thead><tr><th>Cluster</th><th>Size</th>' +
     R.features.map(function (f) { return "<th>" + esc(f) + "</th>"; }).join("") + "</tr></thead><tbody>" + rows +
     '<tr class="avg"><td>Overall average</td><td>' + R.rows.toLocaleString("en-GB") + "</td>" +

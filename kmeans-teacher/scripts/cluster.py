@@ -219,17 +219,28 @@ def drivers(X, labels):
 
 
 # ----------------------------------------------------------------- charts
-def chart_k(ks, inertias, sils, chosen, path):
-    fig, ax = plt.subplots(1, 2, figsize=(11, 4))
+def chart_k(ks, inertias, sils, k_elbow, best_sil_k, chosen, path):
+    """Each panel marks its own method's pick, so a disagreement is visible at a glance."""
+    fig, ax = plt.subplots(1, 2, figsize=(11, 4.4))
+    ei = ks.index(k_elbow)
     ax[0].plot(ks, inertias, "o-", color=PALETTE[0])
-    ax[0].axvline(chosen, color="#999", ls="--")
-    ax[0].set(title="Elbow Method: look for the bend", xlabel="k (number of clusters)",
-              ylabel="Inertia (within-cluster spread)")
-    ax[1].bar(ks, sils, color=[PALETTE[1] if k == chosen else "#cfcfcf" for k in ks])
-    ax[1].set(title="Silhouette score: higher is better", xlabel="k", ylabel="Average silhouette")
+    ax[0].plot(k_elbow, inertias[ei], "o", ms=14, mfc="none", mec=PALETTE[1], mew=2.5)
+    ax[0].annotate(f"elbow: k={k_elbow}", (k_elbow, inertias[ei]), xytext=(14, 12),
+                   textcoords="offset points", color=PALETTE[1], fontweight="bold")
+    ax[0].set(title="Elbow Method: look for the bend", xlabel="k (number of groups)",
+              ylabel="Spread inside groups (lower = tighter)")
+    bi = ks.index(best_sil_k)
+    ax[1].bar(ks, sils, color=[PALETTE[1] if k == best_sil_k else "#cfcfcf" for k in ks])
+    ax[1].annotate(f"best: k={best_sil_k}", (best_sil_k, sils[bi]), xytext=(0, 6),
+                   textcoords="offset points", ha="center", color=PALETTE[1], fontweight="bold")
+    ax[1].set_ylim(min(0, min(sils)), max(sils) * 1.18)
+    ax[1].set(title="Silhouette score: higher is better", xlabel="k (number of groups)",
+              ylabel="How well separated (0 to 1)")
     for a in ax:
         a.spines[["top", "right"]].set_visible(False)
         a.set_xticks(ks)
+    fig.suptitle(f"Elbow suggests k={k_elbow}; silhouette suggests k={best_sil_k}. "
+                 f"This run uses k={chosen}.", fontsize=11)
     fig.tight_layout(); fig.savefig(path, dpi=130); plt.close(fig)
 
 
@@ -402,7 +413,7 @@ def main():
     out = df.copy(); out["Cluster"] = labels
     out.to_csv(os.path.join(a.outdir, "labelled_data.csv"), index=False)
     cent_df.round(3).to_csv(os.path.join(a.outdir, "centroids.csv"), index=False)
-    chart_k(ks, inertias, sils, k, os.path.join(a.outdir, "choose_k.png"))
+    chart_k(ks, inertias, sils, k_elbow, best_sil_k, k, os.path.join(a.outdir, "choose_k.png"))
     chart_clusters(P, labels, C2, var_ratio, os.path.join(a.outdir, "clusters_pca.png"))
 
     rp = replays(Z, k, labels, a.seed)

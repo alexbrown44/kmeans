@@ -36,8 +36,17 @@ Run scripts from the skill folder. Install missing packages with
 4. **Use their numbers.** Explanations should cite the actual values from the
    output ("Cluster 2 visits 16 times a month against an average of 9"), not
    generic textbook statements.
-5. **Adjust depth.** If the user seems new, use the "simple" explanations in
-   the reference file. If they're technical, use the "deeper" ones.
+5. **Simple by default.** Use the "simple" explanations and their analogies from
+   the reference file, always in classroom demo mode. Switch to the "deeper"
+   ones only if the user is clearly technical or asks. Follow the reference
+   file's house rules: plain idea first, technical name second, and no jargon
+   from its "words to avoid" list.
+6. **Every number gets its meaning.** Never quote a number on its own. Add a
+   short reminder of the scale and what counts as good, then what it means
+   here: "silhouette 0.47 (on a 0-to-1 scale, above 0.5 is strong), so these are
+   real groups with some overlap". The reference file's "Reading the numbers"
+   table has the reminder for each one. Repeat the reminder every time; the
+   audience won't remember it from three screens ago.
 
 ## The flow
 
@@ -95,7 +104,10 @@ If the user gave k, use it. Otherwise run without `--k`:
 python scripts/cluster.py --input <file> --features <cols> --outdir out
 ```
 
-Show `choose_k.png`. Explain both methods (see the reference file) and be honest:
+Show `choose_k.png`. Each panel marks its own method's pick, and the title
+states both. Say which k each one points to, by name ("the elbow bends at 5;
+the silhouette bars peak at 4"), before anything else. Explain both methods
+with the reference file's analogies and be honest:
 - The elbow is often a soft bend, not a sharp corner. It's a judgment.
 - Silhouette is a better tie-breaker but not an oracle.
 - When they disagree, the business question decides. Smaller k = simpler
