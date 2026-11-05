@@ -47,6 +47,12 @@ Run scripts from the skill folder. Install missing packages with
    real groups with some overlap". The reference file's "Reading the numbers"
    table has the reminder for each one. Repeat the reminder every time; the
    audience won't remember it from three screens ago.
+7. **Introduce before you use.** Never use a term, score or chart before the
+   step that explains it. Ideas arrive in this order: groups and "how alike"
+   (Steps 1-2), same units for every column (Step 3), the elbow and silhouette
+   (Step 4), the typical member of each group, the "how unusual" profile and
+   the map (Step 5), the step-by-step replay (Step 6). If an earlier step seems
+   to need a later idea, describe it in plain words instead, or leave it out.
 
 ## The flow
 
@@ -79,20 +85,34 @@ For the synthetic data, recommend: Age, AnnualIncome, SpendingScore,
 TimeOnSite, NumberOfVisits.
 
 ### Step 3 - Why scaling matters (the first big lesson)
-Explain that income runs into six figures while SpendingScore stops at 100, so
-in raw units income swamps everything. Demonstrate it, don't just assert it:
+At this point the user knows one idea: K-means puts customers into groups of
+people whose numbers are close together. **Use nothing else.** The silhouette,
+"centroids", "what drove the split" and "standardising" have not been
+introduced, so don't mention them here, and quote no scores.
+
+Demonstrate it, don't just assert it:
 
 ```
 python scripts/cluster.py --input customers.csv --features <cols> --k 5 --no-scale --outdir out_unscaled
 ```
 
-Point at the "What drove the split" output (income near 96%, everything else
-small). Then **always quote both silhouettes side by side**, e.g. "it looks like
-0.71, but scored fairly it's 0.04". Never give the raw-units score alone: it
-looks excellent, and the contrast with the fair score is the whole lesson. The
-raw-units score is high only because it's measured with the same distorted
-ruler. Then standardise and move on. Keep this to a short beat unless the user
-wants more.
+Present it in three short parts:
+1. **The problem, as an analogy** (two sentences): it's like comparing people by
+   height in millimetres and age in years; the height numbers are so much bigger
+   that age barely counts. Income here is in tens of thousands; spending score
+   stops at 100.
+2. **The evidence, as one small table** of the five groups from the centroids
+   output: each group's average income, spending score and visits per month,
+   sorted by income. Income climbs from about $40k to $140k while spending and
+   visits barely change. Then say it plainly: "K-means hasn't found kinds of
+   customer. It has sorted people into income bands, because income has the
+   biggest numbers."
+3. **The fix, in one sentence:** put every column in the same units, "how
+   unusual is this customer for this column?", so every column gets a fair say.
+
+Then move on. Keep this to a short beat unless the user wants more. If they ask
+"how do we know the scaled version is better?", say they'll see a way to
+measure it in the next step.
 
 On the user's own data, run the unscaled comparison only if their columns have
 very different ranges; otherwise mention it in one sentence.
@@ -104,10 +124,19 @@ If the user gave k, use it. Otherwise run without `--k`:
 python scripts/cluster.py --input <file> --features <cols> --outdir out
 ```
 
-Show `choose_k.png`. Each panel marks its own method's pick, and the title
-states both. Say which k each one points to, by name ("the elbow bends at 5;
-the silhouette bars peak at 4"), before anything else. Explain both methods
-with the reference file's analogies and be honest:
+This step introduces the two ways to judge k, so explain each one *before*
+using its numbers. Show `choose_k.png` (each panel marks its own method's pick,
+and the title states both) and take the panels one at a time:
+1. **The elbow:** what it measures, with the shop-staff analogy, then where it
+   bends ("it bends at 5").
+2. **The silhouette:** what it measures, with the party analogy and its 0-to-1
+   scale, then where it peaks ("it peaks at 4, with 0.51").
+
+Optional, one sentence: now that the silhouette is explained, you can look back
+at Step 3: measured fairly, the income-band groups score about 0.04 on this
+scale, almost no real structure.
+
+Then be honest:
 - The elbow is often a soft bend, not a sharp corner. It's a judgment.
 - Silhouette is a better tie-breaker but not an oracle.
 - When they disagree, the business question decides. Smaller k = simpler

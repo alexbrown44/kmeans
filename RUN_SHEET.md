@@ -36,19 +36,21 @@ are. Let's see if it finds them." *Don't name them yet.*
 
 > Show me why scaling matters.
 
-**Expect:**
-- Without scaling, **AnnualIncome drives about 96%** of the split.
-- The silhouette **looks like 0.71, but scored fairly it's about 0.04**.
+**Expect:** the height-in-millimetres analogy, then a small table of five groups.
+Average income climbs from about **$41k to $140k**, while spending and visits barely
+change. **No scores yet**: the silhouette comes in step 3.
 
-**Say:** "Income is in tens of thousands and spending score stops at 100, so income
-shouts over everything else. The good-looking score is measured with the same broken
-ruler. We standardise every column first."
+**Say:** "It hasn't found kinds of customer. It's sorted people by income, because
+income has the biggest numbers. So first we put every column in the same units,
+and every column gets a fair say."
 
 ## 3. Choosing k · 3 min (the key moment)
 
 > How many segments should we use?
 
-**Expect:** the elbow suggests **5**, the silhouette suggests **4** (0.51 vs 0.47). At
+**Expect:** it explains each chart before quoting it: the elbow (shop-staff analogy)
+bends at **5**; the silhouette (party analogy, 0-to-1 scale) peaks at **4** (0.51 vs
+0.47). It may add that the income-band groups from step 2 score only about 0.04. At
 k=4, low spenders who visit rarely form one big group. At k=5 they split by income:
 people who **can't** spend (about $60k) and people who **won't** (about $124k).
 **It should stop and ask you.**
@@ -129,7 +131,7 @@ segment (Affluent but disengaged).
 |---|---|
 | Claude runs ahead through several steps | "Stop there. One step at a time, please." Carry on from wherever it reached. |
 | It picks k itself | "Go back to choosing k. Show me both scores and let me choose." |
-| It quotes 0.71 without the fair score | "What's the fair silhouette for the unscaled run?" |
+| It quotes scores or jargon in step 2 | "Say that again without any scores, just show me the groups' average income and spending." |
 | A script errors or hangs over a minute | Say "live demos…", switch to the demo tab, and walk through it there. |
 | Numbers don't match this sheet | Keep going; the story still works. Tell me after class. |
 | The skill doesn't trigger at all | Check the toggle in Customize > Skills, start a new chat, retype prompt 1. |

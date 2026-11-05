@@ -12,6 +12,9 @@ Adapt the wording to the user's own data.
 - **One analogy per concept**, from everyday life. The ones below are tested; reuse them.
 - **Never quote a number on its own.** Every number gets a short reminder of what it
   means and what counts as good. See "Reading the numbers" at the end.
+- **Never quote a number before its idea has been explained.** A reminder can't
+  rescue a score the audience has never met. Describe what happened in plain
+  words instead.
 - **Words to avoid in simple mode** unless the user uses them first: inertia,
   z-score, standard deviation, Euclidean, variance, eta-squared, PCA, principal
   component, local minimum, convergence, algorithm. Use the plain phrases in
@@ -51,6 +54,12 @@ millimetres and their age in years: the height numbers are so much bigger that
 age barely counts. Income here is in tens of thousands; spending score stops at
 100. So income decides everything. Scaling puts every column in the same units:
 "how unusual is this customer for this column?" Then every column gets a fair say.
+
+Show it with the unscaled groups, not with scores: "The five groups have average
+incomes of $41k, $53k, $75k, $114k and $140k, but almost the same spending and
+visits. K-means hasn't found kinds of customer; it has sorted people by income."
+No silhouette, percentages or "centroids" here: none of them has been
+introduced yet.
 
 **Deeper:** Standardisation converts each feature to z-scores (subtract the
 mean, divide by the standard deviation), so each contributes comparable
@@ -154,7 +163,7 @@ words in brackets, then say what it means for this data.
 | Number | Reminder to attach |
 |---|---|
 | Silhouette score | "on a 0-to-1 scale; above 0.5 is strong, 0.35-0.5 is decent, below 0.25 means little real structure" |
-| Fair vs raw-units silhouette (unscaled run) | "the raw score looks good only because it uses the same lopsided ruler; the fair score re-measures the same groups with every column counting equally" |
+| Fair silhouette of the unscaled run | Only after the silhouette is explained (Step 4), never in the scaling step: "measured fairly, those income-band groups score about 0.04, almost no real structure". Skip the raw-units score with beginners; it needs too much explaining. |
 | What drove the split (%) | "how much that column mattered in forming the groups; near 100% means it decided them, near 0% means it barely counted" |
 | Profile (+1.2, −0.8 …) | "how unusual the group is on that column; 0 is average, beyond ±1 is a defining trait" |
 | Group size / share | "how many customers, and what share of all of them; under about 5% is usually too small for its own campaign" |
