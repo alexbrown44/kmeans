@@ -154,10 +154,28 @@ Then be honest:
 - When they disagree, the business question decides. Smaller k = simpler
   story, fewer campaigns; larger k = finer segments that may be too small to act on.
 
+**When the two disagree, run both and compare, and say that you're doing it.**
+The charts only score each k; they can't show what the groups look like. So do
+what an analyst would: run the script once for each candidate k, then compare
+the two centroid tables.
+
+```
+python scripts/cluster.py --input <file> --features <cols> --k 4 --outdir out_k4
+python scripts/cluster.py --input <file> --features <cols> --k 5 --outdir out_k5
+```
+
+Tell the user plainly first: "The charts can't tell us what changes between 4
+and 5 groups, so I've run both and put them side by side." Then show what
+differs: which group at the smaller k mostly becomes two groups at the larger
+k. Use the sizes and averages from the two tables, and say "mostly": a few
+customers also shift between other groups, so the sizes won't add up exactly.
+On the user's own data, this is the habit to teach.
+
 **On the synthetic data, silhouette picks 4 and the elbow picks 5. Use this.**
 At k=4, two groups that behave alike (low spend, rare visits) are merged; k=5
 separates the ones who *can't* spend from the ones who *won't* (very different
-income). Ask the user which matters for their marketing, then run with that k.
+income). Ask the user which matters for their marketing, then go on with that
+k (both runs already exist, so there's nothing to re-run).
 This is the moment students learn that choosing k is a business decision.
 
 **Always stop here and wait for the user's answer, in every mode, including
@@ -165,7 +183,9 @@ classroom demo mode.** Never pick k yourself and carry on: if the user doesn't
 choose, it looks as if the algorithm decided, which is the opposite of the lesson.
 
 ### Step 5 - Results
-Run the final model with `--k`. Then present, in this order:
+Use the run for the chosen k (e.g. `out_k5` if you compared k values in Step 4;
+otherwise run with `--k` now). The commands below say `out/`; use that run's
+folder instead. Then present, in this order:
 1. **Cluster sizes** and the silhouette verdict in one line.
 2. **Centroids table** in original units, next to the overall average.
 3. **Profile** (standard deviations above/below average): the clearest way to

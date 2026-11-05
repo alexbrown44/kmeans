@@ -51,10 +51,15 @@ and every column gets a fair say."
 **Expect:** it explains each chart before quoting it: the elbow (shop-staff analogy)
 bends at **5**; the silhouette (party analogy, 0-to-1 scale) peaks at **4** (0.51 vs
 0.47). It may look back at the income-band groups from the first try: scored
-the same way, they get 0.04, against 0.47 now. At
-k=4, low spenders who visit rarely form one big group. At k=5 they split by income:
-people who **can't** spend (about $60k) and people who **won't** (about $124k).
-**It should stop and ask you.**
+the same way, they get 0.04, against 0.47 now.
+
+Because the two disagree, it says it **ran both, 4 and 5 groups, and compares them**.
+At k=4, low spenders who visit rarely form one big group (about 310). At k=5 it
+mostly splits by income: people who **can't** spend (207, about $60k) and people who
+**won't** (113, about $124k). **It should stop and ask you.**
+
+**Say:** "The charts can't tell us that. You only find out by running both and
+looking. That's the habit to take to your own data."
 
 **Ask the room:** "Do we want the higher score, or the split marketing can use?"
 Take a show of hands, then:
@@ -139,6 +144,7 @@ segment (Affluent but disengaged).
 |---|---|
 | Claude runs ahead through several steps | "Stop there. One step at a time, please." Carry on from wherever it reached. |
 | It picks k itself | "Go back to choosing k. Show me both scores and let me choose." |
+| It describes the 4-vs-5 split without saying where it came from | "How do you know that? Show me the 4-group and 5-group results side by side." |
 | It quotes scores or jargon in step 2 | "Say that again without any scores, just show me the groups' average income and spending." |
 | A script errors or hangs over a minute | Say "live demos…", switch to the demo tab, and walk through it there. |
 | Numbers don't match this sheet | Keep going; the story still works. Tell me after class. |
