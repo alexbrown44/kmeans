@@ -163,7 +163,7 @@ words in brackets, then say what it means for this data.
 | Number | Reminder to attach |
 |---|---|
 | Silhouette score | "on a 0-to-1 scale; above 0.5 is strong, 0.35-0.5 is decent, below 0.25 means little real structure" |
-| Fair silhouette of the unscaled run | Only after the silhouette is explained (Step 4), never in the scaling step: "measured fairly, those income-band groups score about 0.04, almost no real structure". Skip the raw-units score with beginners; it needs too much explaining. |
+| Fair silhouette of the unscaled run | Only after the silhouette is explained, never in the scaling step. Recall the moment, then compare: "the income-band groups from our first try, scored with every column counting equally, get 0.04, almost no structure; our groups now get 0.47". Skip the raw-units score with beginners; it needs too much explaining. |
 | What drove the split (%) | "how much that column mattered in forming the groups; near 100% means it decided them, near 0% means it barely counted" |
 | Profile (+1.2, −0.8 …) | "how unusual the group is on that column; 0 is average, beyond ±1 is a defining trait" |
 | Group size / share | "how many customers, and what share of all of them; under about 5% is usually too small for its own campaign" |

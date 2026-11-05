@@ -53,6 +53,10 @@ Run scripts from the skill folder. Install missing packages with
    (Step 4), the typical member of each group, the "how unusual" profile and
    the map (Step 5), the step-by-step replay (Step 6). If an earlier step seems
    to need a later idea, describe it in plain words instead, or leave it out.
+8. **No step numbers when talking to the user.** The step numbers in this file
+   are for you. When referring back, name the moment in plain words ("when we
+   tried it without putting the columns in the same units") and remind them
+   what happened, in one clause.
 
 ## The flow
 
@@ -132,9 +136,17 @@ and the title states both) and take the panels one at a time:
 2. **The silhouette:** what it measures, with the party analogy and its 0-to-1
    scale, then where it peaks ("it peaks at 4, with 0.51").
 
-Optional, one sentence: now that the silhouette is explained, you can look back
-at Step 3: measured fairly, the income-band groups score about 0.04 on this
-scale, almost no real structure.
+Optional look-back, once the silhouette is explained. Name the earlier moment
+in plain words (never by step number), say what was measured, and put the two
+scores side by side, e.g.:
+
+> Remember the first try, before we put every column in the same units, when
+> the groups were just income bands? Score those same groups on this 0-to-1
+> scale, with every column counting equally, and they get 0.04: almost no real
+> structure. Our five groups now score 0.47. Same customers; the only change
+> is giving every column a fair say.
+
+If time is short, skip it; the lesson already landed in the scaling step.
 
 Then be honest:
 - The elbow is often a soft bend, not a sharp corner. It's a judgment.

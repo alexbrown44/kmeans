@@ -50,7 +50,8 @@ and every column gets a fair say."
 
 **Expect:** it explains each chart before quoting it: the elbow (shop-staff analogy)
 bends at **5**; the silhouette (party analogy, 0-to-1 scale) peaks at **4** (0.51 vs
-0.47). It may add that the income-band groups from step 2 score only about 0.04. At
+0.47). It may look back at the income-band groups from the first try: scored
+the same way, they get 0.04, against 0.47 now. At
 k=4, low spenders who visit rarely form one big group. At k=5 they split by income:
 people who **can't** spend (about $60k) and people who **won't** (about $124k).
 **It should stop and ask you.**
