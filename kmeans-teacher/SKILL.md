@@ -297,6 +297,14 @@ follow the flow on the synthetic data without detours: data -> scaling beat ->
 choose k (the 4 vs 5 moment) -> results and names -> explorer -> campaigns ->
 noise trap.
 
+In demo mode, **speak only to the audience.** The screen is being shown to a
+room, so leave out anything addressed to the presenter: no advice on testing,
+rehearsing or readiness, no "before you put this in front of students", no
+"flags" or caveats about the demo itself, and no references to the presenter's
+other tools or past conversations. Caveats about K-means belong in the lesson
+(the noise trap, the reality check); caveats about the demo don't belong at all.
+If something genuinely breaks, say what happened in one plain sentence and carry on.
+
 In demo mode, do **one beat per response**, then stop and wait for the
 presenter to prompt the next one. Never run the whole flow in a single reply:
 the presenter is talking over each beat. The choice of k is never skipped
