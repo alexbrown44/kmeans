@@ -77,8 +77,10 @@ Real business data usually scores 0.2–0.4. That's normal, not a mistake.
 Good for teaching a class, explaining segmentation to a team, or learning it yourself.
 
 The skill comes with **synthetic customer data**: 800 online shoppers with five kinds
-of customer hidden inside. Because we know the answer, you can check that K-means
-really finds it. The demo walks through the lessons that matter most:
+of customer mixed in. That's deliberate: it's like testing a metal detector by
+burying a coin first. We know the answer; K-means only gets the numbers. If it
+finds the types, you know the tool works before you trust it on real data, where
+nobody knows the answer. The demo walks through the lessons that matter most:
 
 1. **The data:** which columns to use, and why IDs and text columns are left out.
 2. **Scaling:** a live before-and-after showing one column taking over.

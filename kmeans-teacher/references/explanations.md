@@ -47,6 +47,22 @@ buttons are all basically the same.
 accuracy score. Evaluation relies on internal measures (silhouette, inertia),
 stability across samples, and whether the segments are actionable.
 
+## Why practise on made-up data?
+**Simple:** Yes, we made these customers up, and we know which types we mixed
+in. That's the point. It's like testing a metal detector by burying a coin
+first: if it can't find a coin you know is there, you shouldn't trust it on a
+beach where you don't know. K-means is never told the types; it only gets the
+numbers. If it recovers them, we've learned the tool works. On real customer
+data there is no answer key, so two other checks matter: the silhouette (are
+the groups clearly separate?) and the noise trap (does it "find" groups even in
+pure randomness?).
+
+**Deeper:** Synthetic data with known labels gives ground truth, so recovery
+can be measured directly (here, cluster purity of 95-100% at k=5). That
+validates the pipeline and the choice of features and scaling, not the
+segmentation of any real dataset. The wholesale data is a semi-real check:
+the Channel column is held out, and the clusters still align 97% with it.
+
 ## Why scaling matters
 **Simple:** K-means decides who's alike by measuring how far apart two customers
 are. Without scaling, it's like comparing two people by their height in

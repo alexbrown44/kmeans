@@ -35,8 +35,10 @@ are (age, income) with **what they do** (spending, time, visits).
 something. Gender is a category, so there's no 'closer'. We use it afterwards to
 describe the groups."
 
-**Say:** "Five kinds of customer are hidden in this data. K-means isn't told what they
-are. Let's see if it finds them." *Don't name them yet.*
+**Say:** "We made these customers up, with a few customer types mixed in, and K-means
+won't be told what they are. It's like testing a metal detector by burying a coin
+first: we check the tool where we know the answer, so we can trust it where we don't."
+*Don't say how many types, or name them.*
 
 ## 2. Why scaling matters · 2 min
 
@@ -92,7 +94,9 @@ If Claude hasn't shown them yet:
 
 Names may be worded slightly differently. Sizes should match exactly.
 
-**Say:** "Those are the five segments we hid. K-means found them without being told."
+**Say:** "Those are the five types we mixed in. Didn't we already know? We did, but
+K-means didn't: all it got was the numbers. Coin found. Now we can trust it on data
+where nobody knows the answer."
 
 **Expect, at the end:** a short "beyond this demo" note. We used 5 columns and 800
 customers; K-means works the same with dozens of columns and millions of customers.

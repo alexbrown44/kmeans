@@ -70,9 +70,17 @@ python scripts/generate_data.py --out customers.csv
 
 800 customers, columns: CustomerID, Age, Gender, AnnualIncome, SpendingScore
 (1-100), TimeOnSite (min/session), NumberOfVisits (per month), PreferredCategory.
-Tell them it's synthetic, with hidden segments built in, so we can check whether
-K-means finds them. Never reveal the segment names before the analysis; that
-spoils the payoff.
+Tell them it's synthetic, and **say why that's deliberate**, not contrived. Say it
+once here, briefly (the reference file has the full version): we made up these
+customers with a few customer types mixed in, and K-means won't be told what
+they are. It's like testing a metal detector by burying a coin first: you check
+a tool where you know the answer before you trust it where you don't. On real
+customer data there's no answer key, which is why we'll also learn how to tell
+whether groups are real.
+
+Don't say "hidden segments built in" on its own: without the reason it sounds
+as if we're finding what we already knew. Never reveal the number or names of
+the segments before the analysis; that spoils the payoff.
 
 ### Step 2 - Choose the columns
 Run `python scripts/cluster.py --input <file> --list-columns` and present the
@@ -214,7 +222,13 @@ folder instead. Then present, in this order:
    the picture doesn't always mean overlap in reality.
 
 For the synthetic data, after naming the clusters, reveal that the data was
-built with five hidden segments and that K-means found them without being told.
+made with five customer types and that K-means found them without being told.
+Then answer the obvious objection before anyone raises it: "Didn't we already
+know? We did; K-means didn't. All it got was the numbers. That's the coin
+test passed: now we know the tool works, we can trust it on data where nobody
+knows the answer." If the real wholesale data comes up, it's the unplanted
+version of the same test: K-means separates restaurants from retailers without
+ever seeing the column that says which is which.
 
 **Then end this step with a short "beyond this demo" note**, every time, even
 in demo mode: it may be the last thing the audience hears if time runs out.
