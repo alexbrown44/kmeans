@@ -77,16 +77,25 @@ spoils the payoff.
 ### Step 2 - Choose the columns
 Run `python scripts/cluster.py --input <file> --list-columns` and present the
 columns in a short table. Recommend numeric behavioural columns. Explain:
-- **IDs** carry no information about behaviour. Skip them.
-- **Categorical columns** (Gender, PreferredCategory) don't work in plain K-means,
-  because K-means measures distance, and there's no meaningful distance between
-  "Books" and "Fashion". We use them afterwards to *describe* clusters instead.
-  (For mixed data the proper method is K-prototypes; mention it, don't run it.)
-- Which columns you cluster on decides what kind of segments you get. Behaviour
-  columns give behavioural segments; demographics give demographic ones.
+- **The test is "does distance mean something?", not "is it demographic?"**
+  K-means groups customers whose numbers are close, so a column qualifies if
+  "closer" makes sense. Age does: 25 is closer to 30 than to 60. Gender and
+  PreferredCategory don't: there's no sense in which "Books" is closer to
+  "Fashion" than to "Home". So categories sit out and are used afterwards to
+  *describe* the groups. (For mixed data the proper method is K-prototypes;
+  mention it only if asked, don't run it.)
+- **IDs** are numbers, but distance means nothing: customer 401 isn't more like
+  customer 402 than customer 7. Skip them.
+- **Which columns you pick shapes the segments you get.** Don't describe it as
+  "behaviour gives behavioural segments, demographics give demographic ones":
+  that contradicts using Age. Say what the chosen set actually is.
 
 For the synthetic data, recommend: Age, AnnualIncome, SpendingScore,
-TimeOnSite, NumberOfVisits.
+TimeOnSite, NumberOfVisits, and say it's a deliberate mix: **who** customers
+are (age, income) and **what they do** (spending, time on site, visits). Using
+only what they do would give purely behavioural groups; adding age and income
+lets the groups also say who they are (younger or older, higher or lower
+income). Don't hint at the actual segments yet; that spoils the reveal.
 
 ### Step 3 - Why scaling matters (the first big lesson)
 At this point the user knows one idea: K-means puts customers into groups of
@@ -301,7 +310,9 @@ In demo mode, **speak only to the audience.** The screen is being shown to a
 room, so leave out anything addressed to the presenter: no advice on testing,
 rehearsing or readiness, no "before you put this in front of students", no
 "flags" or caveats about the demo itself, and no references to the presenter's
-other tools or past conversations. Caveats about K-means belong in the lesson
+other tools or past conversations. No stage directions either: no "worth
+saying aloud", "next beat", "tell the room" or "say 'next'". Write the point
+itself, as if speaking to the class. Caveats about K-means belong in the lesson
 (the noise trap, the reality check); caveats about the demo don't belong at all.
 If something genuinely breaks, say what happened in one plain sentence and carry on.
 

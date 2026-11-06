@@ -27,7 +27,13 @@ match every time; if one doesn't, see "If it goes wrong" at the bottom.
 
 **Expect:** 800 synthetic customers. It recommends clustering on Age, AnnualIncome,
 SpendingScore, TimeOnSite and NumberOfVisits, and leaves out CustomerID, Gender and
-PreferredCategory.
+PreferredCategory. The reason is "does distance mean something?": 25 is closer to 30
+than to 60, but "Books" isn't closer to anything. The chosen set mixes **who** customers
+are (age, income) with **what they do** (spending, time, visits).
+
+**If someone asks "why age but not gender?":** "Age is a number where closer means
+something. Gender is a category, so there's no 'closer'. We use it afterwards to
+describe the groups."
 
 **Say:** "Five kinds of customer are hidden in this data. K-means isn't told what they
 are. Let's see if it finds them." *Don't name them yet.*
