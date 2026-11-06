@@ -51,6 +51,11 @@ each non-logged column) and writes `overall_spread` to results.json, so the
 profile ("how unusual") numbers can be explained with a worked example.
 Print-only; no existing numbers changed. Also compile-checked only.
 
+Day 4, later: the chart_k fix is confirmed rendering in Claude chat (each
+panel labels its own pick). Its title now says "Which to use is a business
+decision." when no --k is given, instead of announcing the silhouette
+fallback as "This run uses k=4". Compile-checked only.
+
 ## Still to do (Day 2 and 3)
 1. DONE (Day 2), tested on a schema-faithful mock only: pandas is blocked by
    Windows Application Control on Alex's PC, so cluster.py can't run there.

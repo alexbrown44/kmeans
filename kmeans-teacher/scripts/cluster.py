@@ -239,8 +239,9 @@ def chart_k(ks, inertias, sils, k_elbow, best_sil_k, chosen, path):
     for a in ax:
         a.spines[["top", "right"]].set_visible(False)
         a.set_xticks(ks)
-    fig.suptitle(f"Elbow suggests k={k_elbow}; silhouette suggests k={best_sil_k}. "
-                 f"This run uses k={chosen}.", fontsize=11)
+    # chosen is None when the user hasn't picked k yet; don't present the fallback as a decision
+    ending = f"This run uses k={chosen}." if chosen else "Which to use is a business decision."
+    fig.suptitle(f"Elbow suggests k={k_elbow}; silhouette suggests k={best_sil_k}. {ending}", fontsize=11)
     fig.tight_layout(); fig.savefig(path, dpi=130); plt.close(fig)
 
 
@@ -420,7 +421,7 @@ def main():
     out = df.copy(); out["Cluster"] = labels
     out.to_csv(os.path.join(a.outdir, "labelled_data.csv"), index=False)
     cent_df.round(3).to_csv(os.path.join(a.outdir, "centroids.csv"), index=False)
-    chart_k(ks, inertias, sils, k_elbow, best_sil_k, k, os.path.join(a.outdir, "choose_k.png"))
+    chart_k(ks, inertias, sils, k_elbow, best_sil_k, a.k, os.path.join(a.outdir, "choose_k.png"))
     chart_clusters(P, labels, C2, var_ratio, os.path.join(a.outdir, "clusters_pca.png"))
 
     rp = replays(Z, k, labels, a.seed)
