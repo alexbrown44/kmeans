@@ -197,8 +197,14 @@ otherwise run with `--k` now). The commands below say `out/`; use that run's
 folder instead. Then present, in this order:
 1. **Cluster sizes** and the silhouette verdict in one line.
 2. **Centroids table** in original units, next to the overall average.
-3. **Profile** (standard deviations above/below average): the clearest way to
-   see what makes each cluster different. Turn it into a short description.
+3. **Profile** (the "how unusual" numbers): the clearest way to see what makes
+   each cluster different. The first time you show it, **say how a number is
+   made, with one worked example** from the output's "Overall averages" and
+   "Typical spread" lines, e.g.: "Everyone's average age is 41, and customers
+   typically sit about 13 years either side of that. This group averages 24:
+   17 years below, which is about 1.3 typical gaps, so −1.3." Pick a striking
+   number from a non-log-transformed column, and say "about", since the
+   printed profile is rounded. Then turn the profile into a short description.
 4. **Name each cluster** from its profile (e.g. "High-value loyalists"). Names
    should describe behaviour, not judge people.
 5. **Describing columns**: the categorical breakdown per cluster (gender mix,

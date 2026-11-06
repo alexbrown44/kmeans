@@ -46,6 +46,11 @@ both, so both showed 4 before k was chosen). Drawing only; no numbers changed.
 It only compiles here (pandas is blocked on Alex's PC), so check that
 choose_k.png renders on the next Claude-chat rehearsal.
 
+Day 4 (2026-11-06): cluster.py also prints a "Typical spread" line (std of
+each non-logged column) and writes `overall_spread` to results.json, so the
+profile ("how unusual") numbers can be explained with a worked example.
+Print-only; no existing numbers changed. Also compile-checked only.
+
 ## Still to do (Day 2 and 3)
 1. DONE (Day 2), tested on a schema-faithful mock only: pandas is blocked by
    Windows Application Control on Alex's PC, so cluster.py can't run there.

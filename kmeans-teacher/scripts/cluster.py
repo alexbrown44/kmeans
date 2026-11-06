@@ -366,6 +366,12 @@ def main():
     print("Cluster centroids (average customer in each cluster, original units)")
     print(cent_df.round(1).to_string(index=False))
     print(f"\nOverall averages: " + ", ".join(f"{c}={v:,.1f}" for c, v in overall.items()))
+    # the profile below divides by this, so print it to let the profile be explained with real numbers
+    spread = X.std()
+    shown = [c for c in a.features if c not in logged]
+    if shown:
+        print("Typical spread (how far a customer usually sits from the average): "
+              + ", ".join(f"{c}={spread[c]:,.1f}" for c in shown))
 
     drv = drivers(W, labels)
     print("\nWhat drove the split (share of each column's variation explained by the clusters)")
@@ -378,7 +384,8 @@ def main():
 
     # relative profile: how far each centroid sits from average, in standard deviations
     rel = ((W.groupby(labels).mean() - W.mean()) / W.std()).reset_index(drop=True)[a.features]
-    print("\nProfile (standard deviations above + / below - average)")
+    print("\nProfile: (cluster average - overall average) / typical spread, i.e. how many "
+          "typical gaps above (+) or below (-) average")
     print(pd.concat([cent_df[["Cluster"]], rel.round(2)], axis=1).to_string(index=False))
 
     # profile extra columns (categoricals) per cluster
@@ -452,6 +459,7 @@ def main():
                        "xy": [round(float(C2[i, 0]), 4), round(float(C2[i, 1]), 4)]}
                       for i, r in cent_df.iterrows()],
         "overall_means": {f: round(float(v), 2) for f, v in overall.items()},
+        "overall_spread": {f: round(float(spread[f]), 2) for f in shown},
         "drivers": drv,
         "profiles": profiles,
         "iterations": serialise(rp["good"]),

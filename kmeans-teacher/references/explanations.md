@@ -115,6 +115,15 @@ the typical customer, on one shared ruler. Think of it as "how unusual": **0** i
 completely normal, **+1** is clearly above normal, **−1** clearly below. Anything
 beyond ±1 is a defining trait of that group.
 
+**How it's worked out:** take the group's average, subtract everyone's average,
+and divide by the typical spread (how far a customer usually sits from the
+average). So it counts **how many typical gaps** the group sits above or below
+average. Think of exam marks: scoring 10 above the class average means a lot if
+marks usually sit within 5 of it, and little if they usually range 30 either
+way. Dividing by the typical spread is what lets age, income and visits share
+one ruler. Always show one worked example with the real numbers from the
+output's "Overall averages" and "Typical spread" lines.
+
 ## What drove the split
 **Simple:** For each column, how much did it matter in sorting people into
 groups? Imagine sorting a class into teams and then asking: "If I only knew
