@@ -145,9 +145,16 @@ If the user gave k, use it. Otherwise run without `--k`:
 python scripts/cluster.py --input <file> --features <cols> --outdir out
 ```
 
+**Open by saying how the numbers were made**, before any chart: "K-means needs
+us to say how many groups to make. We don't know, so I ran it nine times, once
+each for 2, 3, 4 … up to 10 groups, and scored every run two ways." Use the
+actual range from the output's "Choosing k" table (it's 2 to 10 unless the
+data is small). If asked why not 1: one group is just everybody.
+
 This step introduces the two ways to judge k, so explain each one *before*
-using its numbers. Show `choose_k.png` (each panel marks its own method's pick,
-and the title states both) and take the panels one at a time:
+using its numbers. Show the chart (`choose_k.png`; call it "the chart", not by
+filename). Each panel marks its own method's pick, and the title states both.
+Take the panels one at a time:
 1. **The elbow:** what it measures, with the shop-staff analogy, then where it
    bends ("it bends at 5").
 2. **The silhouette:** what it measures, with the party analogy and its 0-to-1

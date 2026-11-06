@@ -56,7 +56,9 @@ and every column gets a fair say."
 
 > How many segments should we use?
 
-**Expect:** it explains each chart before quoting it: the elbow (shop-staff analogy)
+**Expect:** it opens with how the numbers were made: it ran K-means nine times, for 2 up
+to 10 groups, and scored each run two ways. Then it explains each chart before quoting
+it: the elbow (shop-staff analogy)
 bends at **5**; the silhouette (party analogy, 0-to-1 scale) peaks at **4** (0.51 vs
 0.47). It may look back at the income-band groups from the first try: scored
 the same way, they get 0.04, against 0.47 now.
